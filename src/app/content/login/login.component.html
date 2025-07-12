@@ -1,0 +1,44 @@
+<div class="w-full min-h-screen sm:min-h-max sm:h-screen p-5 bg-primary sm:bg-transparent overflow-y-auto">
+  <div class="w-full h-full flex flex-wrap sm:flex-nowrap">
+    <div class="w-full flex items-center justify-center mt-7 sm:mt-0">
+      <div class="p-5 xl:p-7 rounded-xl bg-white sm:bg-transparent shadow-2xl">
+        <h2 class="text-3xl font-extrabold text-dark">Sign In</h2>
+        <p class="text-sm text-zinc-900 mt-1">Welcome back! Sign in to your account below.</p>
+        <form #logInNgForm="ngForm" [formGroup]="logInForm" class="w-full space-y-5 mt-6">
+          <div class="w-full">
+            <label for="email" class="text-sm font-bold">E-Mail</label>
+            <input type="email" [formControlName]="'email'" name="email" id="email"
+              class="w-full text-sm border border-light_blue text-light_blue placeholder:text-light_blue rounded-lg outline-none py-2 px-4"
+              placeholder="Enter your E-Mail">
+          </div>
+          <div class="w-full relative">
+            <label for="password" class="text-sm font-bold">Password</label>
+            <input [type]="hidePassword ? 'password' : 'text'" [formControlName]="'password'" name="password"
+              id="password"
+              class="w-full text-sm border border-light_blue text-light_blue placeholder:text-light_blue rounded-lg outline-none py-2 px-4"
+              placeholder="Enter your Password">
+            <mat-icon class="absolute right-4 bottom-2 text-light_blue" (click)="showPassword()">{{hidePassword ?
+              'visibility' : 'visibility_off'}}</mat-icon>
+          </div>
+          <div class="w-full">
+            <button type="submit"
+              class="w-full flex items-center justify-center border-2 border-primary rounded-lg px-6 py-2 outline-none bg-primary hover:bg-white anim group"
+              (click)="logIn()">
+              <span class="text-white group-hover:text-primary anim anim">Sign in</span>
+              <span class="block" *ngIf="isBtnLoading">
+                <svg class="animate-spin -mr-1 ml-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24">
+                  <circle class="opacity-25 stroke-white group-hover:stroke-primary anim" cx="12" cy="12" r="10"
+                    stroke-width="4"></circle>
+                  <path class="opacity-75 fill-white group-hover:fill-primary anim"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                  </path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

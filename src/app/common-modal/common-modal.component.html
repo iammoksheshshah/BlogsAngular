@@ -1,0 +1,30 @@
+<!-- <mat-toolbar>
+  {{title}}
+</mat-toolbar>
+<mat-dialog-content>
+  <p>
+    {{message}}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" color="primary" (click)="onConfirm()"
+    tabindex="1"></button>
+  <button mat-raised-button tabindex="-1" (click)="onDismiss()">{{btnList[0].secondBtn}}</button>
+</mat-dialog-actions> -->
+
+<div class="max-w-4xl w-full rounded-[50px] bg-white p-6 xl:p-8">
+  <div class="flex items-center justify-between">
+    <span class="block text-3xl font-semibold">{{title}}</span>
+    <!-- <span class="block icon-close text-2xl font-extrabold cursor-pointer" (click)="onDismiss()"></span> -->
+  </div>
+  <div class="w-full">
+    <span class="block text-lg font-semibold mt-4">{{message}}</span>
+  </div>
+  <div class="flex items-center justify-end space-x-4 mt-4">
+    <button type="button" (click)="onConfirm()" class="block text-xs sm:text-sm font-medium whitespace-nowrap text-white hover:text-primary bg-primary hover:bg-white anim border border-primary outlien-none cursor-pointer rounded-lg py-2.5 px-5 md:px-8">{{btnList[0].firstBtn}}</button>
+    <button type="button" (click)="onDismiss()" class="block text-xs sm:text-sm font-medium whitespace-nowrap text-primary hover:text-white bg-white hover:bg-primary anim border border-primary outlien-none cursor-pointer rounded-lg py-2.5 px-5 md:px-8">{{btnList[0].secondBtn}}</button>
+  </div>
+</div>
+  
+  
+  

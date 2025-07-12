@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: revert;
+  font-weight: revert;
+}
+//mat-icon
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v142/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+*{@apply font-ubuntu;}
+body{@apply bg-white;}
+.warrper{@apply w-full max-w-[1520px] px-5 mx-auto overflow-x-hidden;}
+.anim{@apply transition-all duration-300;}
+.h1{@apply text-3xl lg:text-4xl xl:text-[40px] 2xl:text-5xl font-extrabold;}
+.btn-primary{@apply  border-2 border-primary bg-primary text-white rounded-lg hover:bg-white hover:text-primary anim px-4 py-2.5;}
+
+/* material table */
+table.mat-mdc-table.mdc-data-table__table.cdk-table.mat-elevation-z8.border.border-gray_3{
+  min-width: 100% !important;
+  border: 1px solid #E3E7EF !important;
+  border-spacing: 0 !important;
+  table-layout: fixed !important;
+}
+.mat-mdc-table .mat-mdc-header-cell{
+  font-size: 14px;
+  color: #8C9CBB;
+  font-weight: 600;
+  padding: 10px 16px !important;
+}
+.mat-mdc-cell{
+  border: none !important;
+}
+.mat-elevation-z8, .mat-mdc-elevation-specific.mat-elevation-z8{
+  box-shadow: none !important;
+}
+.mat-mdc-row:hover{
+  background-color: #fff;
+  box-shadow: 0px 0px 14px 0px #CCE0BD;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s all;
+}
+.mat-mdc-tab-labels{
+  width: fit-content !important;
+}
+.mdc-tab__text-label{
+  font-size: 16px !important;
+  font-family: 'Mukta', sans-serif !important;
+  letter-spacing: 0.5px;
+}
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label{
+  color: #9333ea !important;
+}
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading{
+  border-top-left-radius:8px !important;
+  border-bottom-left-radius:8px !important;
+}
+.mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing{
+  border-top-right-radius:8px !important;
+  border-bottom-right-radius:8px !important;
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading, .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch, .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar{
+  --mdc-tab-indicator-active-indicator-color:#9333ea !important;
+  --mat-tab-header-disabled-ripple-color:rgba(0, 0, 0, 0.38) !important;
+  --mat-tab-header-pagination-icon-color:#000 !important;
+  --mat-tab-header-active-label-text-color:rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-active-ripple-color:#9333ea !important;
+  --mat-tab-header-inactive-ripple-color:#9333ea !important;
+  --mat-tab-header-inactive-focus-label-text-color:rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-inactive-hover-label-text-color:rgba(0, 0, 0, 0.6) !important;
+  --mat-tab-header-active-focus-label-text-color:#9333ea !important;
+  --mat-tab-header-active-hover-label-text-color:#9333ea !important;
+  --mat-tab-header-active-focus-indicator-color:#9333ea !important;
+  --mat-tab-header-active-hover-indicator-color:#9333ea !important;
+}
+
+// ngx editor
+ngx-editor {
+  display: block;
+  height: 100%;
+}
+ngx-editor.ng-pristine:focus .NgxEditor .NgxEditor__Content{
+  border: 1px solid #9333ea !important;
+  box-shadow:inset 0 0 0 0.2rem #CCE0BD !important;
+}
+.NgxEditor__Wrapper .NgxEditor,.NgxEditor__Content{
+  height: 100%;
+}
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Selected, 
+.NgxEditor__Dropdown .NgxEditor__Dropdown--Open,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+  // color: #9333ea1a !important;
+  background-color: #9333ea1a !important;
+}
+.NgxEditor__MenuItem.NgxEditor__MenuItem--Active, .NgxEditor__MenuItem .NgxEditor__MenuItem--Active{
+  fill: #9333ea !important;
+  background-color: rgba(218, 93, 94, 0.2) !important;
+}
+.NgxEditor__Popup--FormGroup input{
+  padding: 2px;
+  border: 1.5px solid #9333ea !important;
+  border-radius: 5px;
+  outline: none;
+}
+.NgxEditor__Popup--Form button{
+  background-color: #9333ea1a !important;
+  color: #9333ea !important;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 2px
+}
+.NgxEditor__Wrapper *{
+  color: inherit;
+}
+.NgxEditor__Wrapper ol{
+  padding-left: 20px !important;
+  list-style: list !important;
+}
+.NgxEditor__Wrapper ul{
+  padding-left: 20px !important;
+  list-style: disc !important;
+}
+
+select.input {
+  @apply appearance-none py-2.5 xl:py-3 px-3 xl:px-4 pr-10 xl:pr-10 text-ellipsis overflow-hidden outline-none text-dark w-full block text-16 xl:text-18 font-bold border border-dark bg-white rounded-md lg:rounded-lg 2xl:rounded-xl;
+}
+.rich_description a{@apply text-blue-500;}
+
+/* paginator */
+
+.w-full.paginator .p-paginator{
+  justify-content: end !important;
+}
+// p-dropdown.p-element.p-inputwrapper.ng-star-inserted.p-inputwrapper-filled {
+//   display: none !important;
+// }
+.p-paginator{
+  padding: 0 !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #9333ea !important;
+  border-color: #EFF6FF !important;
+  color: #fff !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page,
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last {
+  background-color: transparent !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #9333ea;
+  min-width: 3rem !important;
+  height: 3rem !important;
+  margin: 0.143rem !important;
+  transition: box-shadow 0.2s !important;
+  border-radius: 4px !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page,
+.p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last:hover{
+  color: #020617 !important;
+  font-weight: 500 !important;
+}
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover,
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover, .p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover{
+  background: #9333ea1a !important;
+  border-color: transparent !important;
+}
+span.p-paginator-pages{
+  border: 0px solid #9333ea !important;
+  border-radius: 4px !important;
+}
+span.ng-star-inserted {
+  color: #9333ea !important;
+}
+p-dropdown.p-element.p-inputwrapper.p-inputwrapper-filled{
+  border: 1px solid #CBD5E1 !important;
+  border-radius: 4px !important;
+  margin-left: 8px;
+}
+
+.p-dropdown:not(.p-disabled).p-focus{
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border-color: 0px solid transparent !important;
+}
+
+.paginatiom .p-overlay.p-component{
+  top: -144px !important;
+}
+
+@tailwind utilities;

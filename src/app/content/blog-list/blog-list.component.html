@@ -1,0 +1,62 @@
+<div class="flex items-center justify-between px-5">
+  <strong class="text-2xl xl:text-28">Blog</strong>
+  <button type="button" class="flex items-center btn-primary text-sm font-bold cursor-pointer" (click)="addBlog()">
+    <span class="icon-add text-inherit"></span>
+    <span class="block text-inherit ml-3 whitespace-nowrap" >Add new Blog</span>
+  </button>
+</div>
+<div class="flex flex-wrap mt-6 xl:mt-8 px-5">
+  <form class="w-full pb-5 2xl:pb-6">
+    <div class="xl:max-w-3xl w-full flex items-center bg-slate-200 rounded-xl p-3.5 xl:p-4">
+      <input type="text" name="search" id="search" class="w-full bg-transparent text-sm outline-none" placeholder="Search... " (keyup)="onKeySearch($event)">
+      <label for="search" class="flex items-center justify-center cursor-pointer ml-2"><span class="icon-search text-xl"></span></label>
+    </div>
+  </form>
+  <div class="w-full relative" >
+    <div>
+      <div class="w-full overflow-hidden">
+        <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-5 2xl:gap-8" *ngIf="STORY_DATA.length > 0">
+          <div class="w-full single_story border border-gray_3 hover:border-primary rounded-xl cursor-pointer p-4 2xl:p-6 anim" *ngFor="let item of STORY_DATA" (click)="editBlog($event,item._id)">
+            <div class="flex items-center border-b border-cadet_blue pb-5 2xl:pb-6">
+              <span class="block max-w-[200px] 2xl:max-w-xs truncate 2xl:text-lg font-semibold mr-3">{{item.title}}</span>
+              <span class="w-fit block bg-primary/10 text-primary font-semibold text-xs px-4 py-1 mr-3">{{item?.category}}</span>
+              <span class="block text-sm text-cool_gray ml-auto">Posted at {{ item?.blog_date | date:"dd/MM/yyyy"}}</span>
+              <span class="block ml-3 cursor-pointer" (click)="removeBlog($event, item._id)">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M15.84 22.25H8.16a3.05 3.05 0 0 1-3-2.86L4.25 5.55a.76.76 0 0 1 .2-.55.77.77 0 0 1 .55-.25h14a.75.75 0 0 1 .75.8l-.87 13.84a3.05 3.05 0 0 1-3.04 2.86zm-10-16 .77 13.05a1.55 1.55 0 0 0 1.55 1.45h7.68a1.56 1.56 0 0 0 1.55-1.45l.81-13z" fill="red" opacity="1" data-original="red"></path><path d="M21 6.25H3a.75.75 0 0 1 0-1.5h18a.75.75 0 0 1 0 1.5z" fill="red" opacity="1" data-original="red"></path><path d="M15 6.25H9a.76.76 0 0 1-.75-.75V3.7a2 2 0 0 1 1.95-1.95h3.6a2 2 0 0 1 1.95 2V5.5a.76.76 0 0 1-.75.75zm-5.25-1.5h4.5v-1a.45.45 0 0 0-.45-.45h-3.6a.45.45 0 0 0-.45.45zM15 18.25a.76.76 0 0 1-.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1-.75.75zM9 18.25a.76.76 0 0 1-.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1-.75.75zM12 18.25a.76.76 0 0 1-.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1-.75.75z" fill="red" opacity="1" data-original="red"></path></g></svg>
+              </span>
+            </div>
+            <div class="flex flex-col h-[calc(100%-48px)]">
+              <div class="w-full min-h-[80px] mt-5 2xl:mt-6 mb-6 2xl:mb-7">
+                <p class="text-base leading-6 text-justify text-text_1" [innerHTML]="(item.aboutStoryDesc) ? item?.brief : item?.brief | slice:0:180"> <span *ngIf="item.aboutStoryDesc==false && item?.brief.length >= 180">...</span></p>
+                <a href="javascript:;" (click)="item.aboutStoryDesc=true;$event.stopPropagation()" *ngIf="!item.aboutStoryDesc && item?.brief.length > 180" class="text-magicPotion text-sm font-semibold cursor-pointer">...Read More</a>
+                <a href="javascript:;" (click)="item.aboutStoryDesc=false;$event.stopPropagation()" *ngIf="item.aboutStoryDesc && item?.brief.length > 180" class="text-magicPotion text-sm font-semibold cursor-pointer">...Read Less</a>
+              </div>
+              <!-- <div class="flex items-center mt-auto">
+                <div class="flex items-center">
+                  <span class="block text-cool_gray text-sm">Author Name:</span>
+                  <span class="block text-gray_6 font-semibold text-sm mr-3">&nbsp;{{item.author}}</span>
+                </div>
+                <p-inputSwitch class="z-10 ml-auto" [(ngModel)]="item.status" (click)="$event.stopPropagation();"></p-inputSwitch>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card data_paginator flex justify-end mt-[-226px] pt-[250px]" *ngIf="STORY_DATA.length > 0">
+        <p-paginator (onPageChange)="getBlog($event)" [first]="1" [rows]="limit" [totalRecords]="totalStoryData" [rowsPerPageOptions]="[10, 25, 50]"></p-paginator>
+      </div>
+      <div class="w-full flex justify-center p-5" *ngIf="STORY_DATA.length == 0">
+          <div class="max-w-8xl w-full shadow-xl rounded-2xl p-10 mx-auto bg-gray_2">
+              <strong class="block text-xl lg:text-2xl 2xl:text-2xl text-center">Blogs not found..!</strong>
+          </div>
+      </div>
+    </div>
+    <div *ngIf="isTableLoading" class="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-300/30 backdrop-blur-sm z-10">
+      <div class="flex flex-col items-center justify-center">
+        <div class="w-12 h-12 rounded-full animate-spin border-4 border-solid border-primary border-t-transparent">
+        </div>
+        <p class="block text-base font-medium pt-2">Plase wait</p>
+      </div>
+    </div>
+  </div>
+</div>

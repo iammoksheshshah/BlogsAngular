@@ -1,0 +1,10 @@
+<svg width="220" height="60" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blogsmk-gradient" x1="0" y1="0" x2="220" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#9333ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="60" rx="12" fill=""/>
+  <text x="30" y="40" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#blogsmk-gradient)">blogsmk</text>
+</svg>

@@ -1,0 +1,248 @@
+<section class="min-h-screen py-8 lg:py-10 2xl:py-12 bg-gradient-to-br from-gray-50 to-gray-100">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <form class="flex flex-wrap -mx-2 sm:-mx-3 md:-mx-3.5 gap-y-4 sm:gap-y-5 md:gap-y-6" [formGroup]="blogForm">
+        <div class="w-full md:w-6/12 lg:w-4/12 xl:w-1/2 p-2 sm:p-3 md:p-3.5">
+          <div class="flex flex-col sm:flex-row items-center justify-between w-full bg-white sticky top-0 z-10 p-4 sm:p-5 md:p-6 rounded-xl shadow-md backdrop-blur-sm bg-opacity-90 gap-y-3 sm:gap-y-0">
+            <h2 class="text-2xl font-bold text-gray-800">Blog Details</h2> 
+            <div class="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
+              <button type="button" class="text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full px-6 py-2.5 text-sm transition-all duration-300 ease-in-out transform hover:scale-105" [routerLink]="'/blog-list'">Cancel</button>
+              <button type="submit" (click)="submitAction()" class="text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full px-8 py-2.5 text-sm transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">Submit</button>
+            </div>
+          </div>              
+          <div class="w-full py-2 sm:py-2.5 p-2 sm:p-3 md:p-3.5">
+            <div class="w-full relative h-full flex flex-col">
+              <input type="file" name="banner_img" id="banner_img" class="hidden" [multiple]="false" (change)="uploadItemImage($event)">
+              <div
+                class="relative flex items-center justify-center w-full h-40 lg:h-48 xl:max-h-[175px] rounded-3xl overflow-hidden group">
+                <div class="absolute inset-0 z-30 bg-black/40 hidden"
+                  [ngClass]="selectedBannerImg ? 'group-hover:block' : 'hidden'">
+                  <div
+                    class="flex items-center space-x-3 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10"
+                    *ngIf="selectedBannerImg">
+                    <div class="w-full h-full">
+                      <label for="banner_img" class="block w-full h-full cursor-pointer">
+                        <!-- <span class="icon-upload text-xl text-white"></span> -->
+                        <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                        </svg>
+                      </label>
+                    </div>
+                    <button mat-icon-button (click)="removeItemAvatar()">
+                      <!-- <span class="block icon-delete text-white text-xl"></span> -->
+                      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1ZM20 4h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z" fill="#fff" opacity="1" data-original="#000000"></path><path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0ZM15 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z" fill="#fff" opacity="1" data-original="#000000"></path></g></svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center z-20"
+                  [ngClass]="{'opacity-0' : selectedBannerImg}">
+                  <div class="w-full h-full">
+                    <label for="banner_img" class="block w-full h-full cursor-pointer">
+                      <div class="w-full h-full flex items-center justify-center border border-black/20 rounded-3xl">
+                        <span class="w-12 h-12 flex items-center justify-center text-xl rounded-full bg-gray_5">
+                          <!-- <i class="icon-upload text-primary font-medium"></i> -->
+                          <svg class="w-8 h-8 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                <div
+                  class="w-full h-full bg-gray_3 border-2 border-dashed border-primary overflow-hidden rounded-3xl relative z-[1]"
+                  *ngIf="selectedBannerImg">
+                  <img class="object-cover w-full h-full rounded-3xl overflow-hidden"
+                    [src]="constants.baseImageUrl + selectedBannerImg" (error)="imageOnError($event)">
+                </div>
+              </div>
+            </div>
+          </div> 
+          <div class="w-full p-4 sm:p-5 md:p-6 bg-white rounded-xl shadow-md mt-3 sm:mt-4 hover:shadow-lg transition-shadow duration-300">
+            <label for="alter_text" class="block mb-2 text-sm font-medium text-gray-700">Alter Text<span class="text-red-500 ml-1">*</span></label>
+            <input type="text" id="alter_text" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100" placeholder="Enter Alter Text" formControlName="banner_alttext" />
+          </div>
+          <span class="text-sm text-red-500 mt-1 ml-4" *ngIf="blogForm.get('banner_alttext').hasError('required') && (blogForm.get('banner_alttext').dirty || blogForm.get('banner_alttext').touched)">Image Alter Text is required</span> 
+          <div class="w-full bg-white rounded-xl shadow-md p-6 mt-4 hover:shadow-lg transition-shadow duration-300">
+            <label for="blog_category" class="block mb-2 text-sm font-medium text-gray-700">Blog Category<span class="text-red-500 ml-1">*</span></label>
+            <select id="blog_category" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100 cursor-pointer" placeholder="Select Option" formControlName="category">
+                <option value="" disabled>--- Select Option --- </option>
+                <option [value]="category" *ngFor="let category of constants.categoryList">{{category}}</option>
+            </select>
+          </div> 
+          <span class="text-sm text-red-500 mt-1 ml-4" *ngIf="blogForm.get('category').hasError('required') && (blogForm.get('category').dirty || blogForm.get('category').touched)">Blog Category is required</span>
+          <div class="w-full bg-white rounded-xl shadow-md p-6 mt-4 hover:shadow-lg transition-shadow duration-300">
+              <label for="blog_title" class="block mb-2 text-sm font-medium text-gray-700">Blog Title<span class="text-red-500 ml-1">*</span></label>
+              <input type="text" id="blog_title" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100" placeholder="Enter Blog Title" formControlName="title" />
+          </div>
+          <span class="text-sm text-red-500 mt-1 ml-4" *ngIf="blogForm.get('title').hasError('required') && (blogForm.get('title').dirty || blogForm.get('title').touched)">Blog Title is required</span> 
+          <div class="w-full bg-white rounded-xl shadow-md p-6 mt-4 hover:shadow-lg transition-shadow duration-300">
+            <label class="block mb-2 text-sm font-medium text-gray-700">Blog Date<span class="text-red-500 ml-1">*</span></label>
+            <mat-form-field class="w-full" appearance="outline">
+              <input matInput [matDatepicker]="picker" formControlName="blog_date" (click)="picker.open()" placeholder="Select date" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100">
+              <mat-datepicker-toggle matSuffix [for]="picker" class="text-gray-500 hover:text-gray-700 transition-colors duration-300"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <span class="error-message block text-sm font-medium text-red-600" *ngIf="blogForm.get('blog_date').hasError('required') && (blogForm.get('blog_date').dirty || blogForm.get('blog_date').touched)">Blog Date is required.</span>
+          <!-- <div class="w-full py-2.5 p-3.5">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blog Brief<span
+              class="absolute text-red-600 text-[18] font-bold">&nbsp;*</span></label>
+              <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..." formControlName="brief" ></textarea>
+          </div>  -->
+          <div class="w-full p-4 bg-white rounded-lg shadow-sm mt-4" *ngIf="isText && isText == true">
+              <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-y-2 sm:gap-y-0">
+                <label for="photoAndvideo_description" class="text-sm font-medium text-gray-700">Blog Brief<span class="text-red-500 ml-1">*</span></label>
+                <span class="text-sm text-gray-500">({{brief_length}}/10000)</span>
+              </div>
+              <div class="flex flex-col NgxEditor__Wrapper border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" class="border-b border-gray-300"> </ngx-editor-menu>
+                <div class="h-60 overflow-y-auto">
+                  <ngx-editor formControlName="brief" [disabled]="brief_length > 10000" [editor]="editor" [placeholder]="'Type here...'" (ngModelChange)="BriefLength($event)" class="p-4"></ngx-editor>
+                </div>
+              </div>
+              <span class="error-message block text-sm font-medium text-red-600" *ngIf="blogForm.get('brief').hasError('required') && (blogForm.get('brief').dirty || blogForm.get('brief').touched)">Blog Brief is required.</span>
+          </div>
+
+          <div class="w-full bg-white border border-gray-200 rounded-xl p-4 sm:p-6 md:p-8 mt-4 sm:mt-5 md:mt-6 shadow-md hover:shadow-lg transition-shadow duration-300" formArrayName="blog_details">
+            <div class="w-full mb-6">
+              <div class="flex items-center justify-between">
+                  <h3 class="text-lg font-semibold text-gray-800">Additional Blog Details</h3>
+                  <button type="button" (click)="addBlogDetails()" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Add Section
+                  </button>
+              </div>
+            </div>
+            <div class="w-full mt-6 sm:mt-7 md:mt-8 first:mt-0 border-t first:border-t-0 border-gray-100 pt-6 sm:pt-7 md:pt-8 first:pt-0" *ngFor="let blogDetails of blogDetailsFormGroup.controls;let i = index" [formGroupName]="i">
+              <div class="w-full py-2 sm:py-2.5 p-2 sm:p-3 md:p-3.5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <div class="w-full relative h-full flex flex-col">
+                      <input type="file" name="other_banner_img" id="other_banner_img_{{i}}" class="hidden" [multiple]="false" (change)="uploadOtherBlogImage($event,i)">
+                      <div class="relative flex items-center justify-center w-full h-40 lg:h-48 xl:max-h-[175px] rounded-3xl overflow-hidden group">
+                        <div class="absolute inset-0 z-30 bg-black/40 hidden"
+                          [ngClass]="selectedOtherBlogImg ? 'group-hover:block' : 'hidden'">
+                          <div class="flex items-center gap-2 sm:gap-3 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10" *ngIf="selectedOtherBlogImg">
+                            <div class="w-full h-full">
+                              <label for="other_banner_img_{{i}}" class="block w-full h-full cursor-pointer">
+                                <!-- <span class="icon-upload text-xl text-white"></span> -->
+                                <svg class="w-8 h-8 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                </svg>
+                              </label>
+                            </div>
+                            <button mat-icon-button (click)="removeOtherBlogAvatar(i)">
+                              <!-- <span class="block icon-delete text-white text-xl"></span> -->
+                              <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1ZM20 4h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z" fill="#fff" opacity="1" data-original="#000000"></path><path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0ZM15 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z" fill="#fff" opacity="1" data-original="#000000"></path></g></svg>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20"
+                          [ngClass]="{'opacity-0' : selectedOtherBlogImg}">
+                          <div class="w-full h-full">
+                            <label for="other_banner_img_{{i}}" class="block w-full h-full cursor-pointer">
+                              <div class="w-full h-full flex items-center justify-center border border-black/20 rounded-3xl">
+                                <span class="w-12 h-12 flex items-center justify-center text-xl rounded-full bg-gray_5">
+                                  <!-- <i class="icon-upload text-primary font-medium"></i> -->
+                                  <svg class="w-8 h-8 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                  </svg>
+                                </span>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="w-full h-full bg-gray_3 border-2 border-dashed border-primary overflow-hidden rounded-3xl relative z-[1]"
+                              *ngIf="this.blogForm.get('blog_details').controls[i].get('path').value">
+                              <img class="object-cover w-full h-full rounded-3xl overflow-hidden"
+                                [src]="this.blogForm.get('blog_details').controls[i].get('path').value ? constants.baseImageUrl + this.blogForm.get('blog_details').controls[i].get('path').value : constants.defaultImage" (error)="imageOnError($event)">
+                            </div>
+                      </div>
+                    </div>
+                    <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 transition duration-150 ease-in-out" (click)="deleteBlogDetails(i)">
+                    <svg xmlns="http://www.w3.org/2000/svg"  class="h-4 w-4 fill-white" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 6.35 6.35" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M.794 2.91a.265.265 0 0 0 0 .53h4.762a.265.265 0 0 0 0-.53z" opacity="1" ></path></g></svg>
+                  </button>
+              </div> 
+              <div class="w-full mt-4">
+                <label for="alter_text_{{i}}" class="block mb-2 text-sm font-medium text-gray-700">Alter Text</label>
+                <input type="text" id="alter_text_{{i}}" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter Alter Text" formControlName="alttext" />
+              </div>
+              <!-- <span 
+                class="error-message block pl-3.5 text-sm lg:text-sm font-medium text-red-600"
+                *ngIf="blogForm.get('blog_details').controls[i].get('alttext').hasError('required') && (blogForm.get('blog_details').controls[i].get('alttext').dirty || blogForm.get('blog_details').controls[i].get('alttext').touched)">Image Alter Text is required.</span>  -->
+  
+                <div class="w-full mt-4" *ngIf="isText && isText == true">
+                  <div class="flex items-center justify-between mb-2">
+                    <label for="description_{{i}}" class="text-sm font-medium text-gray-700">Description</label>
+                    <span class="text-sm text-gray-500">({{other_description_length}}/10000)</span>
+                  </div>
+                  <div class="flex flex-col NgxEditor__Wrapper border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+                    <ngx-editor-menu [editor]="other_editor[i]" [toolbar]="othertoolbar" class="border-b border-gray-300"> </ngx-editor-menu>
+                    <div class="h-60 overflow-y-auto">
+                      <ngx-editor formControlName="description" id="description_{{i}}" [disabled]="other_description_length[i] > 10000" [editor]="other_editor[i]" [placeholder]="'Type here...'" (ngModelChange)="otherDescriptionLength($event,i)" class="p-4"></ngx-editor>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="w-full md:w-6/12 lg:w-4/12 xl:w-1/2 p-2 sm:p-3 md:p-3.5">
+          <!-- Seo Part -->
+          <div class="w-full bg-white rounded-xl shadow-md p-4 sm:p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 mt-4 sm:mt-5 md:mt-6">
+            <div class="border-b border-gray-200 pb-4 mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">SEO Details</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="w-full">
+                <label for="meta_title" class="block mb-2 text-sm font-medium text-gray-700">Meta Title<span class="text-red-500 ml-1">*</span></label>
+                <input type="text" id="meta_title" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100" placeholder="Enter Blog Titel" formControlName="meta_title" />
+                <span class="error-message block text-sm font-medium text-red-600" *ngIf="blogForm.get('meta_title').hasError('required') && (blogForm.get('meta_title').dirty || blogForm.get('meta_title').touched)">Meta Title is required.</span>
+            </div> 
+            <div class="w-full">
+                 <label for="url_slug" class="block mb-2 text-sm font-medium text-gray-700">URL Slug<span class="text-red-500 ml-1">*</span></label>
+                 <input type="text" id="url_slug" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter URL Slug" formControlName="url_slug" />
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('url_slug').hasError('required') && (blogForm.get('url_slug').dirty || blogForm.get('url_slug').touched)">URL Slug is required</span>
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('url_slug')?.errors?.['pattern']">URL Slug must contain only letters, numbers, hyphens (-) or underscores (_)</span>
+            </div> 
+            <div class="w-full">
+                 <label for="canonical" class="block mb-2 text-sm font-medium text-gray-700">Canonical<span class="text-red-500 ml-1">*</span></label>
+                 <input type="text" id="canonical" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter Canonical URL" formControlName="canonical" />
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('canonical').hasError('required') && (blogForm.get('canonical').dirty || blogForm.get('canonical').touched)">Canonical URL is required</span>
+            </div> 
+            <div class="w-full">
+                <label for="og_title" class="block mb-2 text-sm font-medium text-gray-700">OG Title<span class="text-red-500 ml-1">*</span></label>
+                <input type="text" id="og_title" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter OG Title" formControlName="og_title" />
+                <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('og_title').hasError('required') && (blogForm.get('og_title').dirty || blogForm.get('og_title').touched)">OG Title is required</span>
+            </div> 
+            <div class="w-full">
+                 <label for="og_description" class="block mb-2 text-sm font-medium text-gray-700">OG Description<span class="text-red-500 ml-1">*</span></label>
+                 <textarea name="og_description" id="og_description" rows="4" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100 resize-y min-h-[100px]" placeholder="Enter OG Description" formControlName="og_description"></textarea>
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('og_description').hasError('required') && (blogForm.get('og_description').dirty || blogForm.get('og_description').touched)">OG Description is required</span>
+            </div> 
+            <div class="w-full">
+                 <label for="og_url" class="block mb-2 text-sm font-medium text-gray-700">OG URL<span class="text-red-500 ml-1">*</span></label>
+                 <input type="text" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100" placeholder="Enter OG URL" formControlName="og_url" />
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('og_url').hasError('required') && (blogForm.get('og_url').dirty || blogForm.get('og_url').touched)">OG URL is required</span>
+            </div> 
+            <div class="w-full">
+                 <label for="og_type" class="block mb-2 text-sm font-medium text-gray-700">OG Type<span class="text-red-500 ml-1">*</span></label>
+                 <input type="text" id="og_type" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter OG Type" formControlName="og_type" />
+                 <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('og_type').hasError('required') && (blogForm.get('og_type').dirty || blogForm.get('og_type').touched)">OG Type is required</span>
+            </div> 
+            <div class="w-full">
+                <label for="og_site" class="block mb-2 text-sm font-medium text-gray-700">OG Site Name<span class="text-red-500 ml-1">*</span></label>
+                <input type="text" id="og_site" class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out" placeholder="Enter OG Site Name" formControlName="og_sitename" />
+                <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('og_sitename').hasError('required') && (blogForm.get('og_sitename').dirty || blogForm.get('og_sitename').touched)">OG Site Name is required</span>
+            </div> 
+            <div class="w-full">
+                <label for="meta_desc" class="block mb-2 text-sm font-medium text-gray-700">Meta Description<span class="text-red-500 ml-1">*</span></label>
+                <textarea name="meta_desc" id="meta_desc" class="w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-100 resize-y min-h-[100px]" placeholder="Enter Meta Description" formControlName="meta_description"></textarea>
+                <span class="text-sm text-red-500 mt-1" *ngIf="blogForm.get('meta_description').hasError('required') && (blogForm.get('meta_description').dirty || blogForm.get('meta_description').touched)">Meta Description is required</span>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

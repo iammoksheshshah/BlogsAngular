@@ -1,0 +1,51 @@
+<header class="bg-black">
+  <div class="warrper">
+      <div class="flex items-center flex-wrap -mx-3.5">
+          <div class="p-3.5">
+              <a [routerLink]="''" class="inline-block">
+                <img src="assets/images/logo.svg" class="max-w-4xl" alt="blogsmk logo"/>
+              </a>
+          </div>
+          <div id="open" class="p-10 lg:p-3.5 ml-auto fixed inset-0 w-full h-screen lg:relative md:w-auto md:h-auto bg-dark lg:bg-transparent -translate-x-full lg:translate-x-0 z-50 anim">
+              <div class="lg:hidden flex justify-between items-center w-full pb-7">
+                  <!-- <a href="" class="text-32 xl:text-38 text-white font-bold uppercase">Scalelot?</a> -->
+                  <span class="text-20 font-bold text-white ml-auto lg:hidden cursor-pointer" onclick="toggleActive('#open','-translate-x-full')">
+                      <svg class="w-7 h-7 fill-white" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M4.59 59.41a2 2 0 0 0 2.83 0L32 34.83l24.59 24.58a2 2 0 0 0 2.83-2.83L34.83 32 59.41 7.41a2 2 0 0 0-2.83-2.83L32 29.17 7.41 4.59a2 2 0 0 0-2.82 2.82L29.17 32 4.59 56.59a2 2 0 0 0 0 2.82z" opacity="1" data-original="#000000"></path></g></svg>
+                  </span>
+              </div>
+              <ul class="text-20 italic lg:not-italic lg:text-16 uppercase text-white font-semibold space-y-2 xs:space-y-2.5 lg:space-y-0 lg:flex lg:space-x-5 xl:space-x-7">
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Business')">Business</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('News')">News</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Fashion')">Fashion</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Technology')">Technology</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Sports')">Sports</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Lifestyle')">Lifestyle</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Food')">Food</a></li>
+                  <li><a class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" (click)="blogCategotyList('Fitness')">Fitness</a></li>
+                  <li><span class="py-1.5 lg:py-3.5 hover:text-red-500 block cursor-pointer anim" *ngIf="isLogOutView" (click)="logout()">Logout</span></li>
+              </ul>
+          </div>
+          <div class="ml-auto lg:hidden p-3.5">
+              <span class="ml-auto lg:hidden cursor-pointer" onclick="toggleActive('#open','-translate-x-full')">
+                  <svg class="w-6 h-6 fill-white" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 384 384" style="enable-background:new 0 0 512 512" xml:space="preserve"><g transform="matrix(1,0,0,1,0,55)"><path d="M368 154.668H16c-8.832 0-16-7.168-16-16s7.168-16 16-16h352c8.832 0 16 7.168 16 16s-7.168 16-16 16zM368 32H16C7.168 32 0 24.832 0 16S7.168 0 16 0h352c8.832 0 16 7.168 16 16s-7.168 16-16 16zM368 277.332H16c-8.832 0-16-7.168-16-16s7.168-16 16-16h352c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0" opacity="1" data-original="#000000"></path></g></svg>
+              </span>
+          </div>
+      </div>
+  </div>
+</header>
+
+<div class="w-full py-5 xl:py-8">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="bg-dark fix">
+  <div class="warrper flex justify-between sm:space-x-5 py-5 xl:py-8">
+      <span class="text-14 xl:text-16 font-medium text-white">© Copyright blogsmk.com</span>
+      <div class="space-x-4 lg:space-x-6">
+          <a [routerLink]="'about-us'" class="text-14 xl:text-16 font-medium text-white">About us</a>
+          <a [routerLink]="'contact-us'" class="text-14 xl:text-16 font-medium text-white">Contact us</a>
+          <a [routerLink]="'disclaimer'" class="text-14 xl:text-16 font-medium text-white">Disclaimer</a>
+          <a [routerLink]="'privacy-policy'" class="text-14 xl:text-16 font-medium text-white">Privacy Policy</a>
+      </div>
+  </div>
+</footer>
